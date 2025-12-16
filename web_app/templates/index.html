@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board - Offres d'emploi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">Job<span class="accent">Board</span></h1>
+                <div class="date-selector-wrapper">
+                    <label for="date-selector" class="date-label">Date</label>
+                    <select id="date-selector" class="date-selector">
+                        <option value="">Chargement...</option>
+                    </select>
+                    <span class="job-count" id="job-count">0 offres</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-layout">
+            <!-- Left Sidebar - Job List -->
+            <aside class="job-list-sidebar">
+                <div class="sidebar-header">
+                    <h2>Offres disponibles</h2>
+                    <p class="subtitle">Triées par score IA</p>
+                    <div class="internship-filter-wrapper">
+                        <label for="internship-checkbox" class="checkbox-label">
+                            <input type="checkbox" id="internship-checkbox" class="checkbox-input">
+                            <span>Afficher les stages</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="job-list" class="job-list">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Chargement des offres...</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Panel - Job Details -->
+            <main class="job-detail-panel">
+                <div id="job-detail" class="job-detail">
+                    <div class="empty-state">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                            <circle cx="60" cy="60" r="40" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                            <path d="M40 60L55 75L80 45" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        </svg>
+                        <h3>Sélectionnez une offre</h3>
+                        <p>Cliquez sur une offre dans la liste pour voir les détails</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
