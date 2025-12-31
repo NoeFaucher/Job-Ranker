@@ -57,7 +57,7 @@ The project was born from a real-world problem: job searching is time-consuming 
   * bge-m3 – multilingual embeddings
 * **Data**: Pandas, SQLite
 * **Similarity**: Cosine similarity
-* **Web**: [Web interface documentation](web_app/README.md)
+* **Web**: [Web interface documentation](./web_app/README.md)
 
 ---
 
@@ -66,15 +66,26 @@ The project was born from a real-world problem: job searching is time-consuming 
 * Python **3.11+**
 * CPU-only machine (tested on 8 cores / 16 GB RAM)
 * No GPU required
+* **Ollama** ([Download here](https://ollama.ai/download))
 
 ---
 
 ## Installation
 
+### 1. Python dependencies
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+### 2. Install Ollama and pull the model
+
+```bash
+# Install Ollama from https://ollama.ai/download
+# Then pull the required model:
+ollama pull gemma3:1b
 ```
 
 ---
@@ -84,13 +95,13 @@ pip install -r requirements.txt
 ### Run full pipeline (scraping + ranking)
 
 ```bash
-python job_scrapper.py -c example_config.yaml
+python script.py -c example_config.yaml
 ```
 
 ### Run ranking only (skip scraping)
 
 ```bash
-python job_scrapper.py -c example_config.yaml --process-only
+python script.py -c example_config.yaml --process-only
 ```
 
 The configuration file allows you to define:

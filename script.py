@@ -38,25 +38,31 @@ def scrape(config, db_path):
     search_cfg = config["search"]
     print("Scraping job offers...")
     jobs_db = pd.DataFrame()
-    for location in search_cfg["locations"]:
-        # scrape jobs for this location
-        
-        # Use jobspy to scrape jobs
-        temp_jobs_db = scrape_jobs(
-            site_name=search_cfg["site_name"],
-            search_term=search_cfg["search_term"],
-            location=location,
-            country_indeed=search_cfg["country_indeed"],
-            hours_old=search_cfg["hours_old"],
-
-            # Internal settings
-            results_wanted=100000,
-            linkedin_fetch_description=True,
-            verbose=1,
-        )
-        jobs_db = pd.concat([jobs_db, temp_jobs_db], ignore_index=True)
-        print(f" - Location: {location}: {len(temp_jobs_db)} jobs collected.")
     
+    # Assurer que search_term est une liste
+    search_terms = search_cfg["search_term"]
+    if isinstance(search_terms, str):
+        search_terms = [search_terms]
+    
+    # Boucler sur CHAQUE terme de recherche
+    for search_term in search_terms:
+        for location in search_cfg["locations"]:
+            print(f"Scraping: '{search_term}' in {location}...")
+            
+            temp_jobs_db = scrape_jobs(
+                site_name=search_cfg["site_name"],
+                search_term=search_term, 
+                location=location,
+                country_indeed=search_cfg["country_indeed"],
+                hours_old=search_cfg["hours_old"],
+                results_wanted=100000,
+                linkedin_fetch_description=True,
+                verbose=1,
+            )
+            jobs_db = pd.concat([jobs_db, temp_jobs_db], ignore_index=True)
+            print(f" → {search_term} @ {location}: {len(temp_jobs_db)} jobs collected.")
+    
+    # Filtrer les jobs sans description
     mask = jobs_db["description"].notnull() & (jobs_db["description"] != "")
     jobs_db = jobs_db[mask]
 
