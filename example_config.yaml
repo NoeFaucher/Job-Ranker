@@ -1,6 +1,6 @@
 search:
   site_name: ["linkedin", "indeed"]
-  search_term: "data scientist"
+  search_term: ["data scientist", "machine learning engineer"]
   locations: ["Ile de France", "Toulouse", "Pau, pyrénées-atlantiques"]
   hours_old: 26
   
@@ -10,10 +10,10 @@ filtering:
   preprocess_model: "gemma3:1b"
   embedding_model: "BAAI/bge-m3"
   force_distance_compute: false
-  # skills_description: |
-  #   data scientce, AI, artificial intelligence, python, Computer vision, NLP, LSTM, transformers, PyTorch, TensorFlow.
-  # similarity_threshold: 0.22
-  skills_embedding_path: "my_application/embeddings_skills.npy" # make sure to create this file with the same embedding model
+  skills_description: |
+    data scientce, AI, artificial intelligence, python, Computer vision, NLP, LSTM, transformers, PyTorch, TensorFlow.
+  similarity_threshold: 0.22
+  # skills_embedding_path: "my_application/embeddings_skills.npy" # make sure to create this file with the same embedding model
 
 database:
   path: "data/jobs.sqlite"
