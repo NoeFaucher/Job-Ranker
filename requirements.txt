@@ -3,3 +3,5 @@ pandas
 sentence-transformers[onnx]
 umap-learn
 datamapplot
+ollama
+flask
