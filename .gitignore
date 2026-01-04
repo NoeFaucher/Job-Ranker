@@ -1,6 +1,7 @@
 .venv
 data/*
 my_application
+!.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
